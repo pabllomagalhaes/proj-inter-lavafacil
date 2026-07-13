@@ -1,20 +1,67 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+🚗 LavaFácil Web
 
-# Run and deploy your AI Studio app
+Sistema web desenvolvido como projeto interdisciplinar da 3ª fase do curso de Análise e Desenvolvimento de Sistemas (IFC - Câmpus Fraiburgo). O projeto visa modernizar a gestão de lava-jatos, substituindo métodos manuais por uma plataforma digital de agendamento e controle de pátio.
+🚀 Tecnologias Utilizadas
+Frontend
 
-This contains everything you need to run your app locally.
+    React com TypeScript e Vite
 
-View your app in AI Studio: https://ai.studio/apps/fde94637-09e7-476d-9d04-58c42014fbe3
+    Tailwind CSS para estilização responsiva
 
-## Run Locally
+    React Router para navegação SPA
 
-**Prerequisites:**  Node.js
+    Lucide React para ícones
 
+Backend
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+    Java com Spring Boot
+
+    API RESTful para comunicação
+
+    MySQL como banco de dados
+
+    Padrão DAO para persistência de dados
+
+🛠 Funcionalidades Principais
+
+    Para o Cliente:
+
+        Cadastro de usuários e veículos.
+
+        Agendamento de serviços com precificação dinâmica.
+
+        Filtros inteligentes (ex: ocultação de serviços incompatíveis com a categoria do veículo).
+
+        Acompanhamento de status em tempo real.
+
+    Para o Administrador:
+
+        Painel executivo completo.
+
+        Gestão de fila (pátio) usando estrutura de dados de Fila (Queue).
+
+        CRUD de serviços e categorias.
+
+        Configuração de calendário e controle de capacidade (slots).
+
+🧠 Desafios Técnicos e Aprendizados
+
+O projeto foi um desafio de integração entre tecnologias distintas. Os principais pontos que trabalhamos foram:
+
+    Integração Frontend-Backend: Solução de problemas de CORS e sincronização de formatos de data/hora entre JSON e LocalDateTime.
+
+    Estrutura de Dados: Implementação de uma Fila (FIFO) para controle do pátio, garantindo consistência entre a memória do servidor e a persistência no MySQL.
+
+    Controle de Versão: Gestão colaborativa via GitHub, enfrentando conflitos de merge e padronizando commits para manter a rastreabilidade do código.
+
+👥 Equipe
+
+    Arthur Caminski
+
+    Fernando Mello
+
+    Matheus Mozzer
+
+    Pablo Anjos
+
+Projeto Interdisciplinar - IFC Fraiburgo - 2026
