@@ -1,0 +1,4 @@
+Documento: Pablo
+Front-end: Fernando
+Back-end: Arthur
+Back-end (conexão e banco de dados): Mateus

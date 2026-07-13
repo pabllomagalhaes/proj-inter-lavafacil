@@ -1,0 +1,156 @@
+{
+  "entities": {
+    "Service": {
+      "title": "Service",
+      "description": "Serviço de estética automotiva disponível para agendamento.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "durationMin": { "type": "number" },
+        "prices": { "type": "object", "description": "Preços indexados por tipo de veículo (Moto, Carro, SUV, Caminhonete)" },
+        "icon": { "type": "string" },
+        "category": { "type": "string" },
+        "isAvailable": { "type": "boolean" }
+      },
+      "required": ["id", "name", "durationMin", "prices", "icon", "category", "isAvailable"]
+    },
+    "User": {
+      "title": "User",
+      "description": "Usuário cadastrado no sistema (clientes e administradores).",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "role": { "type": "string", "enum": ["cliente", "administrador"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "password": { "type": "string" }
+      },
+      "required": ["id", "name", "email", "phone", "role", "createdAt"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "Agendamento de serviço realizado por um cliente.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "serviceId": { "type": "string" },
+        "serviceName": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "vehicleType": { "type": "string" },
+        "plate": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "completed", "cancelled"] },
+        "price": { "type": "number" },
+        "discountPrice": { "type": "number" },
+        "couponCode": { "type": "string" },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "userId", "customerName", "customerPhone", "serviceId", "serviceName", "date", "time", "vehicleType", "status", "price", "createdAt"]
+    },
+    "BusinessHours": {
+      "title": "BusinessHours",
+      "description": "Configurações de horários de funcionamento e datas bloqueadas do estabelecimento.",
+      "type": "object",
+      "properties": {
+        "openDays": { "type": "array" },
+        "openingTime": { "type": "string" },
+        "closingTime": { "type": "string" },
+        "lunchStart": { "type": "string" },
+        "lunchEnd": { "type": "string" },
+        "holidays": { "type": "array" },
+        "blockedDates": { "type": "array" },
+        "isTemporarilyClosed": { "type": "boolean" },
+        "temporaryCloseMessage": { "type": "string" }
+      },
+      "required": ["openDays", "openingTime", "closingTime", "isTemporarilyClosed"]
+    },
+    "Promotion": {
+      "title": "Promotion",
+      "description": "Cupom de desconto ativo ou inativo.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "description": { "type": "string" },
+        "discountType": { "type": "string", "enum": ["percentage", "fixed"] },
+        "discountValue": { "type": "number" },
+        "maxUses": { "type": "number" },
+        "currentUses": { "type": "number" },
+        "startDate": { "type": "string" },
+        "endDate": { "type": "string" },
+        "isActive": { "type": "boolean" },
+        "minPriceRequired": { "type": "number" }
+      },
+      "required": ["id", "code", "discountType", "discountValue", "isActive"]
+    },
+    "SystemConfig": {
+      "title": "SystemConfig",
+      "description": "Configurações institucionais do Lava Fácil.",
+      "type": "object",
+      "properties": {
+        "companyName": { "type": "string" },
+        "phone": { "type": "string" },
+        "whatsapp": { "type": "string" },
+        "address": { "type": "string" },
+        "instagram": { "type": "string" },
+        "facebook": { "type": "string" },
+        "welcomeMessage": { "type": "string" },
+        "cancellationPolicyHours": { "type": "number" },
+        "logoIcon": { "type": "string" }
+      },
+      "required": ["companyName", "phone", "whatsapp", "address"]
+    },
+    "InternalNotification": {
+      "title": "InternalNotification",
+      "description": "Notificação administrativa interna sobre eventos do sistema.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["new_booking", "cancelled_booking", "completed_booking", "system"] },
+        "message": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "read": { "type": "boolean" },
+        "bookingId": { "type": "string" }
+      },
+      "required": ["id", "type", "message", "timestamp", "read"]
+    }
+  },
+  "firestore": {
+    "/services": {
+      "schema": "Service",
+      "description": "Coleção de serviços oferecidos."
+    },
+    "/users": {
+      "schema": "User",
+      "description": "Coleção de usuários."
+    },
+    "/bookings": {
+      "schema": "Booking",
+      "description": "Coleção de agendamentos."
+    },
+    "/business_hours": {
+      "schema": "BusinessHours",
+      "description": "Coleção de horários de funcionamento (documento único)."
+    },
+    "/promotions": {
+      "schema": "Promotion",
+      "description": "Coleção de cupons promocionais."
+    },
+    "/system_config": {
+      "schema": "SystemConfig",
+      "description": "Coleção de configurações institucionais (documento único)."
+    },
+    "/notifications": {
+      "schema": "InternalNotification",
+      "description": "Coleção de notificações administrativas."
+    }
+  }
+}

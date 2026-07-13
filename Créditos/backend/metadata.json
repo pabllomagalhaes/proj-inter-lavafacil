@@ -1,0 +1,6 @@
+{
+  "name": "Lava Fácil",
+  "description": "Sistema completo para gerenciamento de lavação automotiva, incluindo área do cliente com agendamento e painel administrativo robusto.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
